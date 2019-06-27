@@ -58,7 +58,7 @@ class App extends Component {
         });
 
         if (amountChange > 0){
-          this.calculate(this.state.oneValue, amountChange);
+          this.calculate(this.state.twentyValue, amountChange);
         }
       }
       else{
@@ -83,12 +83,33 @@ class App extends Component {
         let truncResult = Math.trunc(result);
         let remainder = adjustedAmount % faceValue;
 
-        if (faceValue == this.state.oneValue){
-            this.setState({
-              ones: truncResult
-            });
+        if (faceValue == this.state.twentyValue){
+          this.setState({
+            twenties: truncResult
+          });
+          if (remainder != 0)
+          this.calculate(this.state.tenValue, remainder);
+        }     
+        else if (faceValue == this.state.tenValue){
+          this.setState({
+              tens: truncResult
+          });
+          if (remainder != 0)
+          this.calculate(this.state.fiveValue, remainder);
+        }   
+        else if (faceValue == this.state.fiveValue){
+          this.setState({
+              fives: truncResult
+          });
+          if (remainder != 0)
+          this.calculate(this.state.oneValue, remainder);
+        }
+        else if (faceValue == this.state.oneValue){ 
+          this.setState({
+            ones: truncResult
+          });
             if (remainder != 0)
-            this.calculate(this.state.quarterValue, remainder);
+            this.calculate(this.state.quarterValue, remainder); 
         }
         else if (faceValue == this.state.quarterValue){ 
           this.setState({
@@ -118,14 +139,20 @@ class App extends Component {
         }
     }
     else if (amount < faceValue && amount > 0){   
-        if (faceValue == this.state.oneValue) 
-            this.calculate(this.state.quarterValue, amount);
+        if (faceValue == this.state.twentyValue) 
+          this.calculate(this.state.tenValue, amount);
+        else if (faceValue == this.state.tenValue) 
+          this.calculate(this.state.fiveValue, amount);
+        else if (faceValue == this.state.fiveValue) 
+          this.calculate(this.state.oneValue, amount);                
+        else if (faceValue == this.state.oneValue) 
+          this.calculate(this.state.quarterValue, amount);            
         else if (faceValue == this.state.quarterValue) 
-            this.calculate(this.state.dimeValue, amount);
+          this.calculate(this.state.dimeValue, amount);
         else if (faceValue == this.state.dimeValue)
-            this.calculate(this.state.nickelValue, amount);
+          this.calculate(this.state.nickelValue, amount);
         else if (faceValue == this.state.nickelValue)
-            this.calculate(this.state.pennyValue, amount);
+          this.calculate(this.state.pennyValue, amount);
     }
   }  
 
@@ -182,8 +209,8 @@ class App extends Component {
           <div className="col-sm-8">
             <div className="card">
               <div className="card-body">
-                <div className="card bg-success text-white">
-                  <div className="card-body text-center">{this.state.message}{this.state.changeDue}</div>
+                <div className="alert alert-success">
+                  {this.state.message}{this.state.changeDue}
                 </div>
                 <div className="card-deck">
                   <div className="card bg-light">
