@@ -4,11 +4,17 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    this.changeDueMessage = "The total change due is $";
+    this.moneyOwedMessage = "Additional money owed is $";
+    this.alertSuccess = "alert alert-success";
+    this.alertDanger = "alert alert-danger"
+
     this.state = {
       amountDue: 0,
       amountReceived: 0,
       changeDue: 0,
-      message: "The total change due is $",
+      message: this.changeDueMessage,
+      alertType: this.alertSuccess,
       twenties: 0,
       twentyValue: 20,
       tens: 0,
@@ -29,6 +35,7 @@ class App extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleCalculateClick = this.handleCalculateClick.bind(this);
     this.calculate = this.calculate.bind(this);
+    this.resetChanges = this.resetChanges.bind(this);
   }
 
   handleInputChange(event){
@@ -54,7 +61,8 @@ class App extends Component {
 
       if (amountChange >= 0){
         this.setState({
-          message: "The total change due is $"
+          message: this.changeDueMessage,
+          alertType: this.alertSuccess
         });
 
         if (amountChange > 0){
@@ -63,7 +71,8 @@ class App extends Component {
       }
       else{
         this.setState({
-          message: "Additional money owed is $"
+          message: this.moneyOwedMessage,
+          alertType: this.alertDanger
         });
       }
     }
@@ -159,6 +168,8 @@ class App extends Component {
   resetChanges(){
     this.setState({
       changeDue: 0,
+      message: this.changeDueMessage,
+      alertType: this.alertSuccess,
       twenties: 0,
       tens: 0,
       fives: 0,
@@ -171,18 +182,23 @@ class App extends Component {
   }
 
   render() {
+
+    const hrStyle = {
+      'border-color': 'white',
+    };
+
     return(
       <div className='container-fluid'>
-        <h3>Change Calculator</h3>
-        <hr/>
+        <h1 className="text-white">Change Calculator</h1>
+        <hr style={hrStyle}/>
+
         <div className="row">
           <div className="col-sm-4" >
             <div className="card">
               <div className="card-header">Enter Information</div>
               <div className="card-body">
-                <form>
-                  <div className="form-group">
-                    <label for="amountDue">How much is due?</label>
+                  <div>
+                    <label for="amountDue"><strong>How much is due?</strong></label>
                     <input className="form-control" id="amountDue"
                       name="amountDue" 
                       type="number" 
@@ -191,7 +207,7 @@ class App extends Component {
                     />
                   </div>
                   <div className="form-group">
-                    <label for="amountReceived">How much was received?</label>
+                    <label for="amountReceived"><strong>How much was received?</strong></label>
                     <input className="form-control" id="amountReceived"
                       name="amountReceived" 
                       type="number" 
@@ -199,7 +215,6 @@ class App extends Component {
                       onChange={this.handleInputChange}
                     />
                   </div>
-                </form>
               </div>
               <div className="card-footer">
                 <button className="btn btn-primary btn-block" name="calculateButton" onClick={this.handleCalculateClick}>Calculate</button>
@@ -209,7 +224,7 @@ class App extends Component {
           <div className="col-sm-8">
             <div className="card">
               <div className="card-body">
-                <div className="alert alert-success">
+                <div className={this.state.alertType}>
                   {this.state.message}{this.state.changeDue}
                 </div>
                 <div className="card-deck">
@@ -247,6 +262,8 @@ class App extends Component {
                   </div> 
                 </div>
 
+                <div><p></p></div>
+
                 <div className="card-deck">
                 <div className="card bg-light">
                     <div className="card-body text-center">
@@ -281,7 +298,6 @@ class App extends Component {
                     </div>
                   </div> 
                 </div>
-
               </div>
             </div>
           </div>
