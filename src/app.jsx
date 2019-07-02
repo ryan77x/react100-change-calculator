@@ -184,7 +184,7 @@ class App extends Component {
   render() {
 
     const hrStyle = {
-      'border-color': 'white',
+      'borderColor': 'white',
     };
 
     return(
@@ -198,7 +198,7 @@ class App extends Component {
               <div className="card-header">Enter Information</div>
               <div className="card-body">
                   <div>
-                    <label for="amountDue"><strong>How much is due?</strong></label>
+                    <label><strong>How much is due?</strong></label>
                     <input className="form-control" id="amountDue"
                       name="amountDue" 
                       type="number" 
@@ -207,7 +207,7 @@ class App extends Component {
                     />
                   </div>
                   <div className="form-group">
-                    <label for="amountReceived"><strong>How much was received?</strong></label>
+                    <label><strong>How much was received?</strong></label>
                     <input className="form-control" id="amountReceived"
                       name="amountReceived" 
                       type="number" 
@@ -230,34 +230,34 @@ class App extends Component {
                 <div className="card-deck">
                   <div className="card bg-light">
                     <div className="card-body text-center">
-                      <p className="card-text">
+                      <div  className="card-text">
                         <h1>Twenties</h1>
                         <p className="change">{this.state.twenties}</p>
-                      </p>
+                      </div >
                     </div>
                   </div>
                   <div className="card bg-light">
                     <div className="card-body text-center">
-                      <p className="card-text">
+                      <div  className="card-text">
                         <h1>Tens</h1>
                         <p className="change">{this.state.tens}</p>
-                      </p>
+                      </div >
                     </div>
                   </div>
                   <div className="card bg-light">
                     <div className="card-body text-center">
-                      <p className="card-text">
+                      <div  className="card-text">
                         <h1>Fives</h1>
                         <p className="change">{this.state.fives}</p>
-                      </p>
+                      </div>
                     </div>
                   </div>
                   <div className="card bg-light">
                     <div className="card-body text-center">
-                      <p className="card-text">
+                      <div className="card-text">
                         <h1>Ones</h1>
                         <p className="change">{this.state.ones}</p>
-                      </p>
+                      </div>
                     </div>
                   </div> 
                 </div>
@@ -267,34 +267,34 @@ class App extends Component {
                 <div className="card-deck">
                 <div className="card bg-light">
                     <div className="card-body text-center">
-                      <p className="card-text">
+                      <div className="card-text">
                         <h1>Quarters</h1>
                         <p className="change">{this.state.quarters}</p>
-                      </p>
+                      </div>
                     </div>
                   </div>
                   <div className="card bg-light">
                     <div className="card-body text-center">
-                      <p className="card-text">
+                      <div className="card-text">
                         <h1>Dimes</h1>
                         <p className="change">{this.state.dimes}</p>
-                      </p>
+                      </div>
                     </div>
                   </div>
                   <div className="card bg-light">
                     <div className="card-body text-center">
-                      <p className="card-text">
+                      <div className="card-text">
                         <h1>Nickels</h1>
                         <p className="change">{this.state.nickels}</p>
-                      </p>
+                      </div>
                     </div>
                   </div>
                   <div className="card bg-light">
                     <div className="card-body text-center">
-                      <p className="card-text">
+                      <div className="card-text">
                         <h1>Pennies</h1>
                         <p className="change">{this.state.pennies}</p>
-                      </p>
+                      </div>
                     </div>
                   </div> 
                 </div>
